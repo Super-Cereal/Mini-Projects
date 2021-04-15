@@ -24,7 +24,7 @@ def find_data(path):
 ADDRESS = 'https://online-knigi.com.ua/page/1'
 
 BOOK_NAME, LAST_PAGE_NUMBER = find_data(ADDRESS)
-path = Path.cwd() / 'files' / 'Parsers_gathered_info'
+path = Path.cwd() / 'files' / 'Parsers_gathered_info' / 'online-knigi.com'
 if not path.exists():
     Path.mkdir(path, parents=True)
 with open(path / (BOOK_NAME + '.txt'),
