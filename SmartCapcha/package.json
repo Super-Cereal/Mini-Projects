@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@fastify/formbody": "^7.3.0",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "fastify": "^4.8.1",
+    "https": "^1.0.0",
+    "pino-pretty": "^9.1.1",
+    "point-of-view": "^6.3.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

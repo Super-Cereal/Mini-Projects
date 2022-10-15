@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title>SmartCapcha demo</title>
+    <script
+      src="https://captcha-api.yandex.ru/captcha.js?render=onload&onload=onloadFunction"
+      defer
+    ></script>
+    <script>
+      function onloadFunction() {
+        if (!window.smartCaptcha) {
+          return;
+        }
+
+        window.smartCaptcha.render("captcha-container", {
+          sitekey: "<%= capchaClientKey %>",
+          invisible: true, // Сделать капчу невидимой
+          callback: checkCapcha,
+        });
+      }
+
+      function checkCapcha(token) {
+        console.log(token);
+
+        const submitBtn = document.getElementById("submit-btn");
+        const errorMessage = document.getElementById("capcha-error-message");
+
+        const form = document.getElementById('auth_form');
+
+        fetch(`/check-capcha?token=${token}`).then((isOk) => {
+          if (isOk) {
+            handleSubmit(undefined, false);
+            form.submit();
+          } else {
+            errorMessage.innerHTML = "Ошибка, ты робот";
+          }
+        });
+      }
+
+      function handleSubmit(e, shouldPreventDefault=true) {
+        if (shouldPreventDefault) {
+          e.preventDefault();
+        }
+
+        if (!window.smartCaptcha) {
+          return false;
+        }
+
+        window.smartCaptcha.execute();
+      }
+    </script>
+  </head>
+  <body style="width: 500px">
+    <button onclick="location.href = '/'">Назад</button>
+    <span>Невидимая капча</span>
+    <p>Введите логин и пароль:</p>
+    <form id="auth_form" action="" method="POST" onsubmit="handleSubmit(event);">
+      <label for="username">Name</label>
+      <input id="username" type="text" name="name" />
+      <label for="userpass">Password</label>
+      <input id="userpass" type="password" name="password" />
+
+      <div
+        id="captcha-container"
+        class="smart-captcha"
+        data-sitekey="<%= capchaClientKey %>"
+        data-callback="checkCapcha"
+      ></div>
+      <span id="capcha-error-message" style="color: red"></span>
+
+      <input
+        id="submit-btn"
+        type="submit"
+        value="Submit"
+      />
+    </form>
+  </body>
+</html>

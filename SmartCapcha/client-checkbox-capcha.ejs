@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>SmartCapcha demo</title>
+    <script src="https://captcha-api.yandex.ru/captcha.js" defer></script>
+    <script>
+      function checkCapcha(token) {
+        console.log(token);
+
+        const submitBtn = document.getElementById('submit-btn');
+        const errorMessage = document.getElementById('capcha-error-message');
+        
+        fetch(`/check-capcha?token=${token}`).then((isOk) => {
+          if (isOk) {
+            submitBtn.removeAttribute('disabled');
+          } else {
+            errorMessage.innerHTML = "Ошибка, ты робот";
+          }
+        });
+      }
+    </script>
+  </head>
+  <body style="width: 500px">
+    <button onclick="location.href = '/'">Назад</button>
+    <span>Капча-чекбокс</span>
+    <p>Введите логин и пароль:</p>
+    <form id="auth_form" action="" method="POST">
+      <label for="username">Name</label>
+      <input id="username" type="text" name="name" />
+      <label for="userpass">Password</label>
+      <input id="userpass" type="password" name="password" />
+
+      <div
+        id="captcha-container"
+        class="smart-captcha"
+        data-sitekey="<%= capchaClientKey %>"
+        style="height: 100px"
+        data-callback="checkCapcha"
+      ></div>
+      <span class="capcha-error-message" style="color:red"></span>
+
+      <input id="submit-btn" type="submit" value="Submit" disabled />
+    </form>
+  </body>
+</html>
