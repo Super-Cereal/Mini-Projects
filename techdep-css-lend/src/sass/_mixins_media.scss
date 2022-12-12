@@ -1,0 +1,37 @@
+@import "_vars";
+
+@mixin media-breakpoint-up($min) {
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($max) {
+  @media (max-width: $max - 0.02) {
+    @content;
+  }
+}
+
+@mixin media-mobile-m() {
+  @include media-breakpoint-down($mobileM) { @content };
+}
+
+@mixin media-mobile-l() {
+  @include media-breakpoint-down($mobileL) { @content };
+}
+
+@mixin media-desktop-xs() {
+  @include media-breakpoint-down($desktopXS) { @content };
+}
+
+@mixin media-desktop-s() {
+  @include media-breakpoint-down($desktopS) { @content };
+}
+
+@mixin media-desktop-m() {
+  @include media-breakpoint-down($desktopM) { @content };
+}
+
+@mixin media-desktop-l() {
+  @include media-breakpoint-down($desktopL) { @content };
+}

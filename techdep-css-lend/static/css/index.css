@@ -1,0 +1,128 @@
+@font-face {
+  font-family: "Aubrey";
+  src: url("../../static/fonts/AubreyPro.ttf") format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Aubrey", sans-serif;
+  font-size: 16px;
+}
+
+.page {
+  width: 800px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+@media (max-width: 1023.98px) {
+  .page {
+    width: 100%;
+    padding: 0 120px;
+  }
+}
+@media (max-width: 799.98px) {
+  .page {
+    padding: 0 12px;
+  }
+}
+
+.title {
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.chapter-selector {
+  display: flex;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+.chapter-selector__checker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  margin-left: 24px;
+  border: unset;
+  border-radius: 50%;
+  color: white;
+  background: black;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 0 0 0 white, 0 0 0 8px black;
+  transition: 100ms ease-out box-shadow;
+}
+.chapter-selector__checker:first-child {
+  margin-left: 8px;
+}
+.chapter-selector__checker:hover {
+  opacity: 0.8;
+}
+.chapter-selector__checker:active {
+  transform: scale(0.92);
+}
+.chapter-selector__checker_selected {
+  cursor: unset;
+  box-shadow: 0 0 0 4px white, 0 0 0 8px black;
+}
+.chapter-selector__checker_selected:hover {
+  opacity: 1;
+}
+
+.chapter {
+  display: none;
+}
+.chapter_selected {
+  display: block;
+}
+
+.parallax {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
+  background: var(--image-url) no-repeat fixed;
+  background-size: cover;
+}
+@media (max-width: 1365.98px) {
+  .parallax {
+    height: 300px;
+  }
+}
+@media (max-width: 1023.98px) {
+  .parallax {
+    width: calc(100% + 120px * 2);
+    height: 200px;
+    margin-left: -120px;
+    margin-right: -120px;
+  }
+}
+@media (max-width: 799.98px) {
+  .parallax {
+    width: calc(100% + 12px * 2);
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+}
+.parallax__title {
+  font-size: 2rem;
+  z-index: 2;
+}
+.parallax_with-mask:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(242, 238, 203, 0.3);
+  z-index: 1;
+}
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,14 @@
+{
+  "name": "techdep-css-lend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.html",
+  "scripts": {
+    "watch": "sass --watch src/sass:static/css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.56.2"
+  }
+}
